@@ -24,6 +24,20 @@
 	
 	
 	<dependencies>
+	<!-- 암호화 -->
+	<dependency>
+    <groupId>commons-codec</groupId>
+    <artifactId>commons-codec</artifactId>
+    <version>1.9</version>
+</dependency>
+	
+	<!-- mail -->
+	<dependency>
+		<groupId>javax.mail</groupId>
+		<artifactId>mail</artifactId>
+		<version>1.4.7</version>
+	</dependency>
+	
 	  <!-- JSON Converter -->	  
 	  <dependency>
 	     <groupId>com.fasterxml.jackson.core</groupId>
