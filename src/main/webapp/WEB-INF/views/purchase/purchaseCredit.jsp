@@ -7,6 +7,30 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h3>카드결제</h3>
+	<table border="1">
+	<tr>
+		<td>
+	<input type="radio" name="card">삼성
+	<input type="radio" name="card">현대
+	<input type="radio" name="card">신한
+	<input type="radio" name="card">국민	
+		</td>
+	</tr>
+	<tr>
+		<td>
+	<input type="text" size="2">-
+	<input type="text" size="2">-
+	<input type="password" size="2">-
+	<input type="password" size="2">		
+		</td>
+	</tr>
+	<tr>
+		<td>
+	<input type="button" value="승인">
+	<input type="button" value="취소">	
+		</td>
+	</tr>
+	</table>
 </body>
 </html>

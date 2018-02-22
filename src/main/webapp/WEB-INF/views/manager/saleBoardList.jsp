@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<input type="button" value="발권지할인">
+	<input type="button" value="내일로포괄할인"><br>
+	<img alt="..." src="...">정동진에서 일출 <input type="button" value="하위내용"><br>
+	<input type="button" value="상세보기">
+	<input type="button" value="수정">
+	<input type="button" value="삭제">
 </body>
 </html>

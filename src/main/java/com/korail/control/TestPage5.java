@@ -15,6 +15,22 @@ public class TestPage5 {
 	private void uploadSaleBoard() {
 		
 	}
+	@RequestMapping("/saleBoardList")
+	private void saleBoardList() {
+		
+	}
+	@RequestMapping("/memberPurchase")
+	private void memberPurchase() {
+		
+	}
+	@RequestMapping("/memberDetail")
+	private void memberDetail() {
+		
+	}
+	@RequestMapping("/memberList")
+	private void memberList() {
+		
+	}
 
 	
 }

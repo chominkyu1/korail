@@ -8,7 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TestPage4 {
 	
 	@RequestMapping("/purchaseTicket")
-	private void withSearchList() {
+	private void purchaseTicket() {
+		
+	}
+	@RequestMapping("/purchaseCredit")
+	private void purchaseCredit() {
 		
 	}
 
