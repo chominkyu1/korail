@@ -3,5 +3,7 @@
           "http://mybatis.org/dtd/mybatis-3-config.dtd">       
 <!-- mybatis-config.xml -->
 <configuration>
-
+	<typeAliases>
+		<package name="com.korail.domain"/>
+	</typeAliases>
 </configuration>     
