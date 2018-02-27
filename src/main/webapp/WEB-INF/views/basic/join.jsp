@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form>
+	<form method="post">
 		<input type="file"><br>
 		id:<input type="text"><br>
 		pass:<input type="password"><br>

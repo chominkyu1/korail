@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-
+<!-- user.xml -->
 <mapper namespace="user">
 	<select id="login" resultType="UserVO">
-	select MEMBER_ID,MEMBER_LOGINID,MEMBER_PW,MEMBER_NAME
+	select *
 	from member
-	where MEMBER_LOGINID=#{MEMBER_LOGINID} and MEMBER_PW=#{MEMBER_PW}
+	where member_loginid=#{member_loginid} and member_pw=#{member_pw}
 	</select>
+	<!-- 
+	<insert id="insert">
+		insert into member(member_id,member_loginid,member_pw,member_name,
+		member_ques,member_answer,member_addr,member_gender,member_birth,
+		member_profile,member_regidate,member_type)
+		values(seq_m.naextval,#{member_loginid},#{member_pw},#{member_name},
+		#{member_ques},#{member_answer},
+		#{member_addr},#{member_gender},#{member_birth},
+		#{member_profile},to_date(sysdate,'RR/MM/DD'),'회원')
+	</insert> -->
    
 </mapper>
 

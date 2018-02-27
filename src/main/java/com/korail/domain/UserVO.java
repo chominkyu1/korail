@@ -3,145 +3,147 @@ package com.korail.domain;
 import java.sql.Date;
 
 public class UserVO {
-	private String MEMBER_ID;
-	private String MEMBER_LOGINID;
-	private String MEMBER_PW;
-	private String MEMBER_NAME;
-	private String MEMBER_QUES;
-	private String MEMBER_ANSWER;
-	private String MEMBER_ADDR;
-	private String MEMBER_GENDER;
-	private Date MEMBER_BIRTH;
-    private String MEMBER_TYPE;
-    private String MEMBER_PROFILE;
-    private Date MEMBER_REGIDATE;
+	private String member_id;
+	private String member_loginid;
+	private String member_pw;
+	private String member_name;
+	private String member_ques;
+	private String member_answer;
+	private String member_addr;
+	private String member_gender;
+	private Date member_birth;
+    private String member_profile;
+    private Date member_regidate;
+    private String member_type;
     
     public UserVO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserVO(String mEMBER_ID, String mEMBER_LOGINID, String mEMBER_PW, String mEMBER_NAME, String mEMBER_QUES,
-			String mEMBER_ANSWER, String mEMBER_ADDR, String mEMBER_GENDER, Date mEMBER_BIRTH, String mEMBER_TYPE,
-			String mEMBER_PROFILE, Date mEMBER_REGIDATE) {
+	public UserVO(String member_id, String member_loginid, String member_pw, String member_name, String member_ques,
+			String member_answer, String member_addr, String member_gender, Date member_birth, String member_type,
+			String member_profile, Date member_regidate) {
 		super();
-		MEMBER_ID = mEMBER_ID;
-		MEMBER_LOGINID = mEMBER_LOGINID;
-		MEMBER_PW = mEMBER_PW;
-		MEMBER_NAME = mEMBER_NAME;
-		MEMBER_QUES = mEMBER_QUES;
-		MEMBER_ANSWER = mEMBER_ANSWER;
-		MEMBER_ADDR = mEMBER_ADDR;
-		MEMBER_GENDER = mEMBER_GENDER;
-		MEMBER_BIRTH = mEMBER_BIRTH;
-		MEMBER_TYPE = mEMBER_TYPE;
-		MEMBER_PROFILE = mEMBER_PROFILE;
-		MEMBER_REGIDATE = mEMBER_REGIDATE;
+		this.member_id = member_id;
+		this.member_loginid = member_loginid;
+		this.member_pw = member_pw;
+		this.member_name = member_name;
+		this.member_ques = member_ques;
+		this.member_answer = member_answer;
+		this.member_addr = member_addr;
+		this.member_gender = member_gender;
+		this.member_birth = member_birth;
+		this.member_type = member_type;
+		this.member_profile = member_profile;
+		this.member_regidate = member_regidate;
 	}
 
-	public String getMEMBER_ID() {
-		return MEMBER_ID;
+	public String getMember_id() {
+		return member_id;
 	}
 
-	public void setMEMBER_ID(String mEMBER_ID) {
-		MEMBER_ID = mEMBER_ID;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
 
-	public String getMEMBER_LOGINID() {
-		return MEMBER_LOGINID;
+	public String getMember_loginid() {
+		return member_loginid;
 	}
 
-	public void setMEMBER_LOGINID(String mEMBER_LOGINID) {
-		MEMBER_LOGINID = mEMBER_LOGINID;
+	public void setMember_loginid(String member_loginid) {
+		this.member_loginid = member_loginid;
 	}
 
-	public String getMEMBER_PW() {
-		return MEMBER_PW;
+	public String getMember_pw() {
+		return member_pw;
 	}
 
-	public void setMEMBER_PW(String mEMBER_PW) {
-		MEMBER_PW = mEMBER_PW;
+	public void setMember_pw(String member_pw) {
+		this.member_pw = member_pw;
 	}
 
-	public String getMEMBER_NAME() {
-		return MEMBER_NAME;
+	public String getMember_name() {
+		return member_name;
 	}
 
-	public void setMEMBER_NAME(String mEMBER_NAME) {
-		MEMBER_NAME = mEMBER_NAME;
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
 	}
 
-	public String getMEMBER_QUES() {
-		return MEMBER_QUES;
+	public String getMember_ques() {
+		return member_ques;
 	}
 
-	public void setMEMBER_QUES(String mEMBER_QUES) {
-		MEMBER_QUES = mEMBER_QUES;
+	public void setMember_ques(String member_ques) {
+		this.member_ques = member_ques;
 	}
 
-	public String getMEMBER_ANSWER() {
-		return MEMBER_ANSWER;
+	public String getMember_answer() {
+		return member_answer;
 	}
 
-	public void setMEMBER_ANSWER(String mEMBER_ANSWER) {
-		MEMBER_ANSWER = mEMBER_ANSWER;
+	public void setMember_answer(String member_answer) {
+		this.member_answer = member_answer;
 	}
 
-	public String getMEMBER_ADDR() {
-		return MEMBER_ADDR;
+	public String getMember_addr() {
+		return member_addr;
 	}
 
-	public void setMEMBER_ADDR(String mEMBER_ADDR) {
-		MEMBER_ADDR = mEMBER_ADDR;
+	public void setMember_addr(String member_addr) {
+		this.member_addr = member_addr;
 	}
 
-	public String getMEMBER_GENDER() {
-		return MEMBER_GENDER;
+	public String getMember_gender() {
+		return member_gender;
 	}
 
-	public void setMEMBER_GENDER(String mEMBER_GENDER) {
-		MEMBER_GENDER = mEMBER_GENDER;
+	public void setMember_gender(String member_gender) {
+		this.member_gender = member_gender;
 	}
 
-	public Date getMEMBER_BIRTH() {
-		return MEMBER_BIRTH;
+	public Date getMember_birth() {
+		return member_birth;
 	}
 
-	public void setMEMBER_BIRTH(Date mEMBER_BIRTH) {
-		MEMBER_BIRTH = mEMBER_BIRTH;
+	public void setMember_birth(Date member_birth) {
+		this.member_birth = member_birth;
 	}
 
-	public String getMEMBER_TYPE() {
-		return MEMBER_TYPE;
+	public String getMember_type() {
+		return member_type;
 	}
 
-	public void setMEMBER_TYPE(String mEMBER_TYPE) {
-		MEMBER_TYPE = mEMBER_TYPE;
+	public void setMember_type(String member_type) {
+		this.member_type = member_type;
 	}
 
-	public String getMEMBER_PROFILE() {
-		return MEMBER_PROFILE;
+	public String getMember_profile() {
+		return member_profile;
 	}
 
-	public void setMEMBER_PROFILE(String mEMBER_PROFILE) {
-		MEMBER_PROFILE = mEMBER_PROFILE;
+	public void setMember_profile(String member_profile) {
+		this.member_profile = member_profile;
 	}
 
-	public Date getMEMBER_REGIDATE() {
-		return MEMBER_REGIDATE;
+	public Date getMember_regidate() {
+		return member_regidate;
 	}
 
-	public void setMEMBER_REGIDATE(Date mEMBER_REGIDATE) {
-		MEMBER_REGIDATE = mEMBER_REGIDATE;
+	public void setMember_regidate(Date member_regidate) {
+		this.member_regidate = member_regidate;
 	}
 
 	@Override
 	public String toString() {
-		return "UserVO [MEMBER_ID=" + MEMBER_ID + ", MEMBER_LOGINID=" + MEMBER_LOGINID + ", MEMBER_PW=" + MEMBER_PW
-				+ ", MEMBER_NAME=" + MEMBER_NAME + ", MEMBER_QUES=" + MEMBER_QUES + ", MEMBER_ANSWER=" + MEMBER_ANSWER
-				+ ", MEMBER_ADDR=" + MEMBER_ADDR + ", MEMBER_GENDER=" + MEMBER_GENDER + ", MEMBER_BIRTH=" + MEMBER_BIRTH
-				+ ", MEMBER_TYPE=" + MEMBER_TYPE + ", MEMBER_PROFILE=" + MEMBER_PROFILE + ", MEMBER_REGIDATE="
-				+ MEMBER_REGIDATE + "]";
+		return "UserVO [member_id=" + member_id + ", member_loginid=" + member_loginid + ", member_pw=" + member_pw
+				+ ", member_name=" + member_name + ", member_ques=" + member_ques + ", member_answer=" + member_answer
+				+ ", member_addr=" + member_addr + ", member_gender=" + member_gender + ", member_birth=" + member_birth
+				+ ", member_type=" + member_type + ", member_profile=" + member_profile + ", member_regidate="
+				+ member_regidate + "]";
 	}
+
+	
     
     
 }

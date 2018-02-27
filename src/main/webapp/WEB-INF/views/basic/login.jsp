@@ -7,12 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form>
-		id:<input type="text"><br>
-		pass:<input type="text"><br>
-		<input type="button" value="naver">
+	<form method="post" action="/basic/loginpost">
+		id:<input type="text" name="member_loginid"><br>
+		pass:<input type="text" name="member_pw"><br>
 		<input type="button" value="google"><br>
-		<input type="button" value="로그인">
+		<input type="submit" value="로그인">
 		<input type="button" value="회원가입"><br>
 		<input type="button" value="아이디찾기">
 		<input type="button" value="비밀번호찾기"><br>
