@@ -16,6 +16,7 @@ public class MemberVO {
     private Date member_Regidate;
     private String member_Type;
     
+    
     public MemberVO() {
 		// TODO Auto-generated constructor stub
 	}
