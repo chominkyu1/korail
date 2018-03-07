@@ -1,4 +1,4 @@
-package com.korail.testpage;
+package com.korail.utillpage;
 
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
