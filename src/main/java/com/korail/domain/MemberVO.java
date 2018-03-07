@@ -11,19 +11,20 @@ public class MemberVO {
 	private String member_Answer;
 	private String member_Addr;
 	private String member_Gender;
-	private Date member_Birth;
+	private String member_Birth;
+	private Date member_Birth_jsp;
     private String member_Profile;
     private Date member_Regidate;
     private String member_Type;
-    
+    private String member_Phone;
     
     public MemberVO() {
-		// TODO Auto-generated constructor stub
-	}
+    	
+    }
 
 	public MemberVO(String member_Id, String member_Loginid, String member_Pw, String member_Name, String member_Ques,
-			String member_Answer, String member_Addr, String member_Gender, Date member_Birth, String member_Profile,
-			Date member_Regidate, String member_Type) {
+			String member_Answer, String member_Addr, String member_Gender, String member_Birth, Date member_Birth_jsp,
+			String member_Profile, Date member_Regidate, String member_Type, String member_Phone) {
 		super();
 		this.member_Id = member_Id;
 		this.member_Loginid = member_Loginid;
@@ -34,9 +35,11 @@ public class MemberVO {
 		this.member_Addr = member_Addr;
 		this.member_Gender = member_Gender;
 		this.member_Birth = member_Birth;
+		this.member_Birth_jsp = member_Birth_jsp;
 		this.member_Profile = member_Profile;
 		this.member_Regidate = member_Regidate;
 		this.member_Type = member_Type;
+		this.member_Phone = member_Phone;
 	}
 
 	public String getMember_Id() {
@@ -103,12 +106,20 @@ public class MemberVO {
 		this.member_Gender = member_Gender;
 	}
 
-	public Date getMember_Birth() {
+	public String getMember_Birth() {
 		return member_Birth;
 	}
 
-	public void setMember_Birth(Date member_Birth) {
+	public void setMember_Birth(String member_Birth) {
 		this.member_Birth = member_Birth;
+	}
+
+	public Date getMember_Birth_jsp() {
+		return member_Birth_jsp;
+	}
+
+	public void setMember_Birth_jsp(Date member_Birth_jsp) {
+		this.member_Birth_jsp = member_Birth_jsp;
 	}
 
 	public String getMember_Profile() {
@@ -135,14 +146,24 @@ public class MemberVO {
 		this.member_Type = member_Type;
 	}
 
+	public String getMember_Phone() {
+		return member_Phone;
+	}
+
+	public void setMember_Phone(String member_Phone) {
+		this.member_Phone = member_Phone;
+	}
+
 	@Override
 	public String toString() {
-		return "UserVO [member_Id=" + member_Id + ", member_Loginid=" + member_Loginid + ", member_Pw=" + member_Pw
+		return "MemberVO [member_Id=" + member_Id + ", member_Loginid=" + member_Loginid + ", member_Pw=" + member_Pw
 				+ ", member_Name=" + member_Name + ", member_Ques=" + member_Ques + ", member_Answer=" + member_Answer
 				+ ", member_Addr=" + member_Addr + ", member_Gender=" + member_Gender + ", member_Birth=" + member_Birth
-				+ ", member_Profile=" + member_Profile + ", member_Regidate=" + member_Regidate + ", member_Type="
-				+ member_Type + "]";
+				+ ", member_Birth_jsp=" + member_Birth_jsp + ", member_Profile=" + member_Profile + ", member_Regidate="
+				+ member_Regidate + ", member_Type=" + member_Type + ", member_Phone=" + member_Phone + "]";
 	}
-    
+
+	
+	
     
 }

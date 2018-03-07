@@ -7,12 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form>
-		아이디:<input type="text"><br>
-		이름:<input type="text"><br>
-		핸드폰번호:<input type="text"><br>
-		이메일주소:<input type="text"><br>
-		<input type="button" value="확인">
+	<form method="post">
+		아이디:<input type="text" name="member_Loginid"><br>
+		이름:<input type="text" name="member_Name"><br>
+		핸드폰번호:<input type="text" name="member_Phone"><br>
+		이메일주소:<input type="text" name="member_Email"><br>
+		<input type="submit" value="확인">
 		<input type="button" value="취소">
 	</form>
 </body>

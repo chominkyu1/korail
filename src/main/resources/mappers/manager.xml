@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- manager.xml -->
+<mapper namespace="manager">
+	<select id="membersearch1" resultType="MemberVO">
+		select * from member
+	</select>
+	<select id="membersearch2" resultType="MemberVO">
+		select * from member
+		where member_loginid like '%'||#{searchText}||'%'
+	</select>
+	<select id="membersearch3" resultType="MemberVO">
+		select * from member
+		where member_name like '%'||#{searchText}||'%'
+	</select>
+	<select id="membersearch4" resultType="MemberVO">
+		select * from member
+		where member_regidate like '%'||#{searchText}||'%'
+	</select>
+	
+	<select id="membersearchdetail" resultType="MemberVO">
+		select * from member
+		where member_Id = #{member_Id}
+	</select>
+	<select id="memberwithboard" resultType="WithboardVO">
+		select * from WITHBOARD
+		where member_Id = #{member_Id}
+	</select> 
+	
+	<select id="tipreview" resultType="TipreviewVO">
+		select * from tipreview
+		where member_Id = #{member_Id}
+	</select>
+	
+	<select id="discountAll" resultType="DiscountVO">
+		select * from discount
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

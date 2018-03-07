@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,15 +8,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>회원상세현황</h3><br>
-	회원신상<br>
-	회원명:<input type="text"><br>
-	회원아이디:<input type="text"><br>
-	회원주소:<input type="text"><br>
-	회원전화번호:<input type="text"><br>
-	회원성별:<input type="text"><br>
-	회원분류:<input type="text"><br>
-	게시글작성내역<br>
+	<h3>회원상세현황</h3>
+	<br> 회원신상
+	<br> 회원명:
+	<label> ${memberDetail.member_Name }</label>
+	<br> 회원아이디:
+	<label> ${memberDetail.member_Loginid }</label>
+	<br> 회원주소:
+	<label> ${memberDetail.member_Addr }</label>
+	<br> 회원전화번호:
+	<label> ${memberDetail.member_Phone }</label>
+	<br> 회원성별:
+	<label> ${memberDetail.member_Gender }</label>
+	<br> 회원분류:
+	<label> ${memberDetail.member_Type }</label>
+	<br> 게시글작성내역
+	<br>
 	<table border="1">
 		<tr>
 			<td>No.</td>
@@ -25,24 +33,21 @@
 			<td>조회수</td>
 			<td>스크랩수</td>
 		</tr>
-		<tr>
-			<td>1</td>
-			<td>1</td>
-			<td>1</td>
-			<td>1</td>
-			<td>1</td>
-			<td>1</td>
-		</tr>
-		<tr>
-			<td>2</td>
-			<td>2</td>
-			<td>2</td>
-			<td>2</td>
-			<td>2</td>
-			<td>2</td>
-		</tr>
-	</table><br>
-	동행내역<br>
+		<c:forEach items="${memberwithboard }" var="Withboard"
+			varStatus="strt">
+			<tr id="${strt.count }">
+				<td>${strt.count } </td>
+				<td>${Withboard.withboard_Title }</td>
+				<td>${Withboard.withboard_Title }</td>
+				<td>${Withboard.withboard_Title }</td>
+				<td>${Withboard.withboard_Title }</td>
+				<td>${Withboard.withboard_Title }</td>
+			</tr>
+		</c:forEach>
+
+	</table>
+	<br> 동행내역
+	<br>
 	<table border="1">
 		<tr>
 			<td>No.</td>
@@ -68,8 +73,9 @@
 			<td>2</td>
 			<td>2</td>
 		</tr>
-	</table><br>
-	결제내역<br>
+	</table>
+	<br> 결제내역
+	<br>
 	<table border="1">
 		<tr>
 			<td>No.</td>
@@ -95,7 +101,8 @@
 			<td>2</td>
 			<td>2</td>
 		</tr>
-	</table><br>
-	
+	</table>
+	<br>
+
 </body>
 </html>

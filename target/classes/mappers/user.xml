@@ -2,22 +2,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <!-- user.xml -->
 <mapper namespace="user">
-	<select id="login" resultType="UserVO">
-	select *
-	from member
-	where member_loginid=#{member_loginid} and member_pw=#{member_pw}
+	<!-- 로그인 -->
+	<select id="login" resultType="MemberVO">
+		select *
+		from member
+		where member_Loginid=#{member_Loginid} and member_Pw=#{member_Pw}
 	</select>
-	<!-- 
+
+	<!-- 회원가입 -->
 	<insert id="insert">
-		insert into member(member_id,member_loginid,member_pw,member_name,
-		member_ques,member_answer,member_addr,member_gender,member_birth,
-		member_profile,member_regidate,member_type)
-		values(seq_m.naextval,#{member_loginid},#{member_pw},#{member_name},
-		#{member_ques},#{member_answer},
-		#{member_addr},#{member_gender},#{member_birth},
-		#{member_profile},to_date(sysdate,'RR/MM/DD'),'회원')
-	</insert> -->
-   
+		Insert into MEMBER (MEMBER_ID,MEMBER_LOGINID,MEMBER_PW,MEMBER_NAME,MEMBER_QUES,MEMBER_ANSWER,MEMBER_ADDR,MEMBER_GENDER,MEMBER_BIRTH,MEMBER_TYPE,MEMBER_PROFILE,MEMBER_REGIDATE,MEMBER_PHONE)
+		values ('M'||lpad(seq_M.nextval,3,0),#{member_Loginid},#{member_Pw},#{member_Name},#{member_Ques},#{member_Answer},#{member_Addr},#{member_Gender},#{member_Birth},'회원',#{member_Profile},sysdate,#{member_Phone})
+	</insert>
+	<!-- <insert id="insert"> Insert into MEMBER (MEMBER_ID,MEMBER_LOGINID,MEMBER_PW,MEMBER_NAME,MEMBER_QUES,MEMBER_ANSWER,MEMBER_ADDR,MEMBER_GENDER,MEMBER_BIRTH,MEMBER_TYPE,MEMBER_PROFILE,MEMBER_REGIDATE,MEMBER_PHONE) 
+		values ('M'||lpad(seq_M.nextval,3,0),'member','member','아이이잉','1','토스트','서울시 
+		강남구 도곡동 193- 21 213호','여성',sysdate,'회원','C:\Users\Playdata\Desktop\erd\토스트가좋아.jpg',sysdate,'01022222222') 
+		</insert> -->
+
+	<!-- id찾기 -->
+	<select id="idsearch" resultType="string">
+		select member_loginid
+		from
+		member
+		where member_name=#{member_Name} and
+		member_phone=#{member_Phone}
+	</select>
+	<!-- pw찾기 -->
+	<update id="pwsearch">
+		update member set member_pw = #{member_Pw}
+		where
+		member_name=#{member_Name} and member_phone=#{member_Phone}
+	</update>
+	<!-- 멤버탈퇴 -->
+	<delete id="membersecession">
+		delete from member
+		where member_id=#{member_id}
+	</delete>
 </mapper>
 
 

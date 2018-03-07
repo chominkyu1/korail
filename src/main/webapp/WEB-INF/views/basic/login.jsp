@@ -8,8 +8,8 @@
 </head>
 <body>
 	<form method="post" action="/basic/loginpost">
-		id:<input type="text" name="member_loginid"><br>
-		pass:<input type="text" name="member_pw"><br>
+		id:<input type="text" name="member_Loginid"><br>
+		pass:<input type="text" name="member_Pw"><br>
 		<input type="button" value="google"><br>
 		<input type="submit" value="로그인">
 		<input type="button" value="회원가입"><br>

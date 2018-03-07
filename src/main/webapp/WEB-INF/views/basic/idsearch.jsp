@@ -7,17 +7,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form>
-		이름:<input type="text"><br>
-		핸드폰번호:<input type="text"><br>
-		질문:<select>
+	<form method="post">
+		이름:<input type="text" name="member_Name"><br>
+		핸드폰번호:<input type="text" name="member_Phone"><br>
+		질문:<select name="member_Ques">
 			<option>별명1호?</option>
 			<option>보물1호?</option>
 			<option>출생지?</option>
 		</select><br>
-		답변:<input type="text"><br>
-		<input type="button" value="확인">
+		답변:<input type="text" name="member_Answer"><br>
+		<input type="submit" value="확인" onclick="idserarch()">
 		<input type="button" value="취소">
 	</form>
 </body>
+<script>
+	function idserarch() {
+	alert("회원님의 아이디는"${member_Id}"입니다.");
+</script>
 </html>
