@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>신용카드 결제</title>
 </head>
 <body>
-	<h3>카드결제</h3>
+	<h3>카드결제페이지 입니다</h3>
+	<form action="purchase/credit" method="post">
 	<table border="1">
 	<tr>
 		<td>
@@ -32,5 +33,7 @@
 		</td>
 	</tr>
 	</table>
+	<input type="hidden" value="${tOrderVO}" name="tOrderVO">
+	</form>
 </body>
 </html>

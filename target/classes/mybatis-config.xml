@@ -11,6 +11,13 @@
 		<typeAlias type="com.korail.domain.WithAskVO" alias="ask" />
 		<typeAlias type="com.korail.domain.MemberVO" alias="memberVO" />
 		<typeAlias type="com.korail.domain.TipReviewVO" alias="tip" />
-		
+		<typeAlias type="com.korail.domain.DiscountVO" alias="discountVO"/>
+		<typeAlias type="com.korail.domain.StationVO" alias="stationVO"/>
+		<typeAlias type="com.korail.domain.TicketVO" alias="TicketVO"/>
+		<typeAlias type="com.korail.domain.TOrderVO" alias="TOrderVO"/>
+		<typeAlias type="com.korail.domain.RefundVO" alias="RefundVO"/>
+		<typeAlias type="com.korail.domain.AddFileVO" alias="AddFileVO"/>
+		<typeAlias type="com.korail.dto.MyPurchaseDTO" alias="MyPurchaseDTO"/>
+		<typeAlias type="com.korail.dto.PurchaseDTO" alias="PurchaseDTO"/>
 	</typeAliases>
 </configuration>     

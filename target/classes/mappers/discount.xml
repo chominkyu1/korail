@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- user.xml -->
+<mapper namespace="discount" >
+	<insert id="create">
+		insert into discount (discount_Id, station_Id, discount_Title, discount_Price,
+			member_Id, discount_Content, discount_Shopname, discount_Shophone,discount_Map, discount_Count)
+		    values ('D'||lpad (seq_D.nextval,3,0) ,#{station_Id},#{discount_Title},#{discount_Price},#{member_Id},
+		            #{discount_Content},#{discount_Shopname},#{discount_Shophone},#{discount_Map},0)
+		
+	</insert>
+
+    <update id="update">
+     update discount 
+     set  station_Id = #{station_Id},
+          discount_Title = #{discount_Title},
+          discount_Price = #{discount_Price},
+          discount_Content = #{discount_Content},
+          discount_Shopname = #{discount_Shophone},
+          discount_Map = #{discount_Map}
+     where discount_id = #{discount_Id}
+    </update>
+
+	<delete id="delete">
+		delete from discount where discount_id = #{discount_id}
+	</delete>
+	
+	<select id="listAll" resultType="discountVO">
+	  select * from discount
+	</select>
+	
+    <select id="read" resultType="discountVO">
+     select * from discount where discount_id = #{discount_Id}
+    </select>
+    
+    <update id="countUp">
+     update discount 
+     set discount_Count=(select discount_Count from discount where discount_id = #{discount_Id})+1
+     where discount_id = #{discount_Id}
+    </update>
+    
+    <select id="station" resultType="stationVO">
+     select * from station
+     where station_id = #{station_Id}
+    </select>
+    
+    <select id="stationList" resultType="string">
+     select station_station from station
+     where station_type = #{station_type}
+    </select>
+    
+    <select id="stationId" resultType="string">
+     select station_Id from station
+     where station_Station = #{station_Station}
+    </select>
+    
+    <select id="discountSeq" resultType="String">
+    select 'D'||lpad (seq_D.nextval,3,0) from dual
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- user.xml -->
+<mapper namespace="file" >
+	<insert id="create">
+	insert into addfile 
+	values ('F'||lpad (seq_F.nextval,3,0) ,#{addFile_Path},#{addFile_Name},#{addFile_Size},
+	<choose>
+	<when test="tipreview_Id !=null">#{tipreview_Id}</when>
+	<when test="discount_Id !=null">#{discount_Id}</when>
+	</choose>);
+	</insert>
+	
+	<update id="update">
+	
+	</update>
+	
+	<delete id="delete">
+	delete from addfile where 
+	<choose>
+	<when test="tipreview_Id !=null">tipreview_Id=#{tipreview_Id}</when>
+	<when test="discount_Id !=null">discount_Id=#{discount_Id}</when>
+	</choose>
+	</delete>
+	
+   	<select id="select" resultType="AddFileVO">
+   	
+   	</select>
+   	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

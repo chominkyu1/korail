@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- user.xml -->
+<mapper namespace="purchase" >
+
+    <select id="orderSeq" resultType="string">
+       select 'OR'||lpad (seq_OR.nextval,3,0) from dual
+    </select>
+
+	<insert id="orderCreate">	
+	insert into torder (tOrder_Id, tOrder_Price, tOrder_State,tOrder_PayType, member_Id)
+	            values (#{tOrder_Id},#{tOrder_Price},#{tOrder_State},#{tOrder_PayType},#{member_Id})
+	</insert>
+	
+	<insert id="ticketCreate">
+	insert into ticket (ticket_Id, ticket_Name, ticket_ValidDate, tOrder_Id)
+	            values ('T'||lpad (seq_T.nextval,3,0),#{ticket_Name},#{ticket_ValidDate},#{tOrder_Id})
+	</insert>
+	
+	<select id="ticketone" resultType="TicketVO">
+	select * from ticket where ticket_Id = #{ticket_Id}
+	</select>
+	
+	<update id="updateticket">
+	update ticket 
+	set ticket_Station=#{ticket_Station},
+	    ticket_StartDate=TO_DATE(#{ticket_StartDate},'yyyy/mm/dd')
+	where ticket_Id = #{ticket_Id}
+	</update>
+	
+	<select id="selectList" resultType="MyPurchaseDTO">
+	select tOrder_Id,tOrder_Date,tOrder_Price,tOrder_PayType,tOrder_State,member_Id,ticket_Name
+	from torder natural join ticket 
+	where member_Id = #{member_Id}
+	</select>
+	
+	<update id="stateUpdate"><!-- 환불신청시 환불처리중으로 변경 -->
+	update torder 
+	set tOrder_State = #{state}
+	where tOrder_Id=#{tOrder_Id}
+	</update>
+	
+	<select id="refundOrder"  resultType="String">
+	 select Torder_Id
+     from (select tOrder_Id, TICKET_STARTDATE
+           from ticket 
+           where tOrder_Id = #{tOrder_Id})
+     where TICKET_STARTDATE is null or TICKET_STARTDATE>sysdate
+	</select>
+	
+	<select id="listAll" resultType="PurchaseDTO">
+	select t.tOrder_Id, t.member_Id, t.tOrder_Date, t.tOrder_Price,t.tOrder_PayType, t.tOrder_State,r.refund_Id,r.refund_Date, r.refund_State,r.refund_Sum
+	from torder t left outer join refund r
+	on t.torder_id = r.torder_Id
+	order by t.tOrder_Id desc
+	</select>
+	
+	<insert id="createRefund">
+	insert into refund (refund_Id, refund_State,refund_Sum, torder_Id)
+	            values ('OR'||lpad (seq_RE.nextval,3,0),'0',
+	            (select tOrder_Price from torder where torder_Id= #{torder_Id}),#{torder_Id})
+	</insert>
+	
+	<update id="refundState">
+	update refund 
+	set refund_State = '1'
+	where torder_Id= #{torder_Id}
+	</update>
+	
+	<select id="searchlist" resultType="PurchaseDTO">
+	select *
+	from (select t.tOrder_Id, t.member_Id, t.tOrder_Date, t.tOrder_Price,t.tOrder_PayType, t.tOrder_State,r.refund_Id,r.refund_Date, r.refund_State,r.refund_Sum
+	      from torder t left outer join refund r
+	      on t.torder_id = r.torder_Id)
+	<choose>
+		<when test="member_Id !=null">where member_Id like #{keyword}</when>
+		<when test="tOrder_Id !=null">where tOrder_Id like #{keyword}</when>
+		<otherwise>where refund_Id is not null</otherwise>
+	</choose>
+	order by tOrder_Id desc
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
