@@ -54,7 +54,7 @@ public class WithController {
 	}
 
 	@RequestMapping(value = "read", method = RequestMethod.GET)
-	public void readWithBoard(Model model, @RequestParam("member_Id") String member_Id,
+	public void readWithBoard(Model model,String member_Id,
 			@RequestParam("withboard_Id") String withboard_Id, Criteria cri) throws Exception {
 		logger.info("두번 째 도전. 과연 성공할까?");
 		model.addAttribute(service.readWithBoard(withboard_Id));
@@ -66,7 +66,7 @@ public class WithController {
 	}
 
 	@RequestMapping(value = "register", method = RequestMethod.GET)
-	public void registerGET(Model model, @RequestParam("member_Id") String member_Id) throws Exception {
+	public void registerGET(Model model,String member_Id) throws Exception {
 		logger.info("세번 째 도전. 과연 성공할까?");
 		model.addAttribute("writerInfo", service.writerInfo(member_Id));
 
@@ -99,7 +99,7 @@ public class WithController {
 	}
 
 	@RequestMapping(value = "modify", method = RequestMethod.GET)
-	public void modifyGET(String withboard_Id, Model model, @RequestParam("member_Id") String member_Id, Criteria cri)
+	public void modifyGET(String withboard_Id, Model model, String member_Id, Criteria cri)
 			throws Exception {
 		model.addAttribute("writerInfo", service.writerInfo(member_Id));
 		model.addAttribute(service.readWithBoard(withboard_Id));
@@ -109,7 +109,7 @@ public class WithController {
 
 	@RequestMapping(value = "modify", method = RequestMethod.POST)
 	public String modifyPOST(WithBoardVO withBoardVO, RedirectAttributes rttr,
-			@RequestParam("member_Id") String member_Id, Criteria cri) throws Exception {
+			String member_Id, Criteria cri) throws Exception {
 		logger.info("여섯번째 도전, 이름하여 수정");
 		service.modify(withBoardVO);
 		rttr.addFlashAttribute("msg", "SUCCESS");
@@ -126,7 +126,7 @@ public class WithController {
 	} // 전체 게시물조회
 
 	@RequestMapping("/list")
-	public void listPage(Criteria cri, Model model, @RequestParam("member_Id") String member_Id) throws Exception {
+	public void listPage(Criteria cri, Model model, String member_Id) throws Exception {
 		System.out.println("특정페이지 게시물 조회");
 		model.addAttribute("list", service.listCriteria(cri));
 		PageMaker maker = new PageMaker();
@@ -144,7 +144,7 @@ public class WithController {
 	} // 전체 게시물조회
 
 	@RequestMapping(value = "/myAskList", method = RequestMethod.GET)
-	public void myAskList(@RequestParam("member_Id") String sender_Id, Model model) throws Exception {
+	public void myAskList(@RequestParam("member_Id")  String sender_Id, Model model) throws Exception {
 		logger.info("에스크에스크askAllow 내가보낸 요청");
 
 		model.addAttribute("list", service.askList(sender_Id));
@@ -152,8 +152,8 @@ public class WithController {
 	}
 
 	@RequestMapping(value = "/askAllow", method = RequestMethod.GET)
-	public void askAllow(@RequestParam("member_Id") String sender_Id, Model model) throws Exception {
-		logger.info("에스크에스크askAllow 내가보낸 요청2");
+	public void askAllow(String sender_Id, Model model) throws Exception {
+		logger.info("에스크에스크askAllow 내가받은 요청");
 
 		model.addAttribute("list", service.askList(sender_Id));
 

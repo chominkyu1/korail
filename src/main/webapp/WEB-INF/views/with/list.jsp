@@ -130,6 +130,7 @@
 
 	<div class="col-md-4">
 		<form id="search" name="search" action="post">
+			<input type="hidden" name="member_Id" value="${sessionScope.memberVO.member_Id}">
 			<input type="text" class="form-control" id="member_loginId"
 				placeholder="member" value="member_loginId" readOnly>
 			<div class="form-group">

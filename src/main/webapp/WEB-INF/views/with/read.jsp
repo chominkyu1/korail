@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%><%@ taglib
 	uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%><%@ page session="true" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%><%@ page
+	session="true"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -44,7 +45,7 @@
 			var serializeData = $(".askform").serialize();
 			$.post("ask", serializeData, function(data) {
 				self.location = 'list?member_Id=${param.member_Id}';
-			});	
+			});
 		});
 
 	});
@@ -58,9 +59,10 @@
 	<form role="form" method="post" action="modifyPage" class="askform">
 		<input type='hidden' name='withboard_Id'
 			value="${withBoardVO.withboard_Id}"> <input type='hidden'
-			name='member_Id' value="${withBoardVO.member_Id}"> <input
+			name='member_Id' value="${sessionScope.memberVO.member_Id}"> <input
 			type='hidden' name='page' value="${cri.page}"> <input
 			type='hidden' name='perPageNum' value="${cri.perPageNum}">
+
 	</form>
 	<table class="table table-borded">
 		<tr>
@@ -130,7 +132,7 @@
 				</div>
 				<div class="modal-body">
 					<form class="askform">
-					<input type="hidden" name ="sender_Id" value ="${param.member_Id}">
+						<input type="hidden" name="sender_Id" value="${param.member_Id}">
 						<div class="form-group">
 							<label for="recipient-name" class="control-label">Recipient:</label>
 							<input type="text" class="form-control" name="member_Id"

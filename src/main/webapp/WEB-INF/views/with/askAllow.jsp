@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%><%@ taglib
 	uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%><%@ page session="true" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%><%@ page
+	session="true"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,33 +18,38 @@
 <title>요청 허가하는 뷰</title>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		$(".status").on("click", function() {
+	$(document).ready(
+			function() {
+				$(".status").on(
+						"click",
+						function() {
 
-			var btn = $(this);
-			var withAsk_State = btn.parent().find("select option:selected").val();//$("#selState  option:selected").val();
-			var withAsk_Id = btn.parent().find("input").val();// $("#withAsk_Id").val();
-			alert(withAsk_State);
-			$.ajax({
-				type : "post", // post방식으로 전송
-				url : "askAllow", // controller로 보낼 url
-				data : {
-					'withAsk_State' : withAsk_State,
-					'withAsk_Id' : withAsk_Id
-				},
-				success : function(data) {
-					//alert(data);
-					//alert(btn.parent().children("p").first().text());
-					//alert(btn.parent().children("p:first").text());
-					btn.parent().children("p").first().text('현재 요청상태 : '+withAsk_State);
-					//btn.parent().children("p:first").text('현재 요청상태 : '+withAsk_State);
-				},
-				error : function(xhr, status) {
-					alert(status);
-				}
+							var btn = $(this);
+							var withAsk_State = btn.parent().find(
+									"select option:selected").val();//$("#selState  option:selected").val();
+							var withAsk_Id = btn.parent().find("input").val();// $("#withAsk_Id").val();
+							alert(withAsk_State);
+							$.ajax({
+								type : "post", // post방식으로 전송
+								url : "askAllow", // controller로 보낼 url
+								data : {
+									'withAsk_State' : withAsk_State,
+									'withAsk_Id' : withAsk_Id
+								},
+								success : function(data) {
+									//alert(data);
+									//alert(btn.parent().children("p").first().text());
+									//alert(btn.parent().children("p:first").text());
+									btn.parent().children("p").first().text(
+											'현재 요청상태 : ' + withAsk_State);
+									//btn.parent().children("p:first").text('현재 요청상태 : '+withAsk_State);
+								},
+								error : function(xhr, status) {
+									alert(status);
+								}
+							});
+						});
 			});
-		});
-	});
 </script>
 
 </head>
@@ -53,6 +59,8 @@
 			<div class="list-group">
 				<c:forEach items="${list}" var="lista">
 					<form>
+						<input type="hidden" name="member_Id"
+							value="${sessionScope.memberVO.member_Id}">
 						<h4 class="list-group-item-heading">${lista.SENDER_ID}님이보낸
 							요청입니다.</h4>
 						<p class="list-group-item-text" id="a">현재 요청상태 :

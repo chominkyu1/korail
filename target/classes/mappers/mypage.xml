@@ -3,13 +3,13 @@
 <!-- user.xml -->
 <mapper namespace="mypage">
 	<!-- 마이페이지스크랩리스트 -->
-	<select id="mypagescrap" resultType="TipreviewVO">
+<!-- 	<select id="mypagescrap" resultType="TipreviewVO">
 		select * from tipreview
 		where tipreview_Id in(
 		select tipreview_Id 
 		from scrap
 		where member_Id = #{member_Id})
-	</select>
+	</select> -->
 <!-- 	<select id="tipreview" resultType="TipreviewVO">
 	select * from tipreview
 	where tipreview_Id =#{tipreview_Id}

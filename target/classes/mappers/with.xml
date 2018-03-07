@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- msg.xml -->
+<mapper namespace="withboard">
+	<!-- 세부 동행 게시글 공통 조회 -->
+	<select id="readWithBoard" resultType="withboard">
+		select
+		WITHBOARD_ID,WITHBOARD_TITLE,WITHBOARD_STARTDATE,WITHBOARD_ENDDATE,WITHBOARD_REGIDATE,WITHBOARD_GENDER,WITHBOARD_CONTENT,
+		MEMBER_ID
+		from withboard
+		where withboard_id=#{withboard_id}
+	</select>
+
+	<!-- 세부 동행게시글 일정 조회 -->
+	<select id="readWithSche" resultType="withsche">
+		select withsche_Id,
+		withsche_Station, withsche_Startdate, withsche_Enddate,
+		withsche_Content,withboard_Id,withsche_Addr
+		from withsche
+		where
+		withboard_id=#{withboard_id}
+	</select>
+
+
+	<!-- 동행 게시글 리스트 조회 -->
+	<select id="listWithBoard" resultType="withboard">
+		select
+		WITHBOARD_ID,WITHBOARD_TITLE,WITHBOARD_STARTDATE,WITHBOARD_ENDDATE,WITHBOARD_REGIDATE,WITHBOARD_GENDER,WITHBOARD_CONTENT,
+		MEMBER_ID
+		from withboard
+	</select>
+
+	<!-- 동행 게시글 작성 1탄- 게시글 윗부분 공통 -->
+	<insert id="writeWithBoard">
+		insert into withboard
+		(WITHBOARD_ID,WITHBOARD_TITLE,WITHBOARD_STARTDATE,WITHBOARD_ENDDATE,WITHBOARD_REGIDATE,WITHBOARD_GENDER,WITHBOARD_CONTENT,
+		MEMBER_ID)
+		values('W'||lpad (SEQ_W.nextval,3,0),#{withboard_Title},
+		TO_DATE(#{withboard_Startdate}, 'yy/mm/dd'),
+		TO_DATE(#{withboard_Enddate},
+		'yy/mm/dd'),sysdate,#{withboard_Gender},#{withboard_Content},
+		#{member_Id})
+	</insert>
+
+	<!-- 동행 게시글 작성 2탄- 일정 추가 -->
+	<insert id="writeWithSche">
+		insert into withsche
+		(withsche_Id,withsche_Station,withsche_Startdate,withsche_Enddate,
+		withsche_Content,withboard_Id,withsche_Addr)
+		values('S'||lpad
+		(SEQ_SC.nextval,3,0),#{withsche_Station},TO_DATE(#{withsche_Startdate},
+		'yy/mm/dd'),TO_DATE(#{withsche_Enddate},
+		'yy/mm/dd'),#{withsche_Content},'W'||lpad
+		(SEQ_W.currval,3,0),#{withsche_Addr})
+	</insert>
+
+	<delete id="deleteWithBoard">
+		delete from withboard where withboard_id=
+		#{withboard_Id}
+	</delete>
+	<delete id="deleteWithSche">
+		delete from withsche where withboard_id=
+		#{withboard_Id}
+	</delete>
+
+
+	<update id="updateWithBoard">
+		update withboard set withboard_Title =
+		#{withboard_Title} ,withboard_Startdate=#{withboard_Startdate},
+		withboard_Enddate=#{withboard_Enddate},withboard_Gender=#{withboard_Gender},withboard_Content=#{withboard_Content}
+		where withboard_Id=#{withboard_Id}
+	</update>
+	<update id="updateWithSche">
+		update withsche set
+		withsche_Station=#{withsche_Station},withsche_Startdate=#{withsche_Startdate},withsche_Enddate=#{withsche_Enddate},
+		withsche_Content=#{withsche_Content},withsche_Addr=#{withsche_Addr}
+		where withsche_Id=#{withsche_Id}
+	</update>
+
+
+	<select id="totalCnt" resultType="int">
+		select count(*) from withboard
+	</select>
+
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString() ">
+				where withboard_Title like '%'||#{keyword}||'%'
+			</if>
+			<if test="searchType == 'w'.toString() ">
+				where withboard_Content like '%'||#{keyword}||'%'
+			</if>
+			<if test="searchType == 'tw'.toString() ">
+				where withboard_Title like '%'||#{keyword}||'%'
+				or
+				withboard_Content like '%'||#{keyword}||'%'
+			</if>
+		</if>
+	</sql>
+
+	<!-- 검색어 대한 like조회 -->
+	<select id="listSearch" resultType="withboard">
+		select *
+		from withboard
+		<include refid="search"></include>
+		order by withboard_id desc
+	</select>
+
+	<!-- 검색어 대한 like조회된 전체 레코드 수 -->
+	<select id="listSearchCount" resultType="int">
+		select count(*)
+		from withboard
+		<include refid="search"></include>
+	</select>
+
+
+	<insert id="ask">
+		insert into withask
+		(withAsk_Id, withAsk_Content,
+		withAsk_Date, sender_Id,
+		withboard_Id, withAsk_State)
+		values('A'||lpad(SEQ_A.nextval,3,0),#{withAsk_Content},sysdate,#{sender_Id},#{withboard_Id},0)
+
+	</insert>
+
+	<!--내가 보낸 요청 목록 -->
+	<select id="askList" resultType="hashmap">
+		select b.member_Id, a.sender_Id,
+		TO_CHAR(a. withask_Date,'YYYY-MM-DD
+		HH24:MI:SS')withask_Date
+		,a.withask_Id,a.withask_State,a.withask_Content
+		from withAsk a natural
+		join withBoard b
+		where a.sender_Id=#{sender_Id}
+	</select>
+	<!--내가 받은 요청 목록 -->
+	<select id="askedList" resultType="hashmap">
+		select b.member_Id,
+		a.sender_Id, a.
+		withask_Date,a.withask_Id,a.withask_State,a.withask_Content
+		from
+		withAsk a natural join withBoard b
+		where a.member_Id=#{member_Id}
+	</select>
+
+	<update id="askState">
+		update withask set withAsk_State =
+		#{withAsk_State}
+		where withAsk_Id=#{withAsk_Id}
+	</update>
+
+	<select id="searchsearch" resultType="withboard">
+		select withboard_Id, withboard_Title, withboard_Startdate,
+		withboard_Enddate, withboard_Regidate, withboard_Gender,
+		withboard_Content,
+		member_Id
+		from withboard natural join withsche
+		natural join member
+		where 1 =1
+
+		<if test="withsche_Station !=null ">
+			and withsche_Station=#{withsche_Station}
+		</if>
+		<if test="withboard_Startdate != null ">
+			and #{withboard_Startdate}
+			between WITHBOARD_STARTDATE and
+			WITHBOARD_ENDDATE
+		</if>
+		<if test="withboard_Gender !=null">
+			<if test="withboard_Gender == '0'.toString()">
+				and 1=1
+			</if>
+			<if
+				test="withboard_Gender == '1'.toString() or withboard_Gender == '2'.toString()">
+				and withboard_Gender =#{withboard_Gender}
+			</if>
+		</if>
+		<if test="search_Category != null ">
+			<if test="search_Category == '0'.toString() ">
+				and( withboard_content like '%'||#{search_Keyword}||'%'
+				or
+				withsche_content
+				like '%'||#{search_Keyword}||'%')
+
+			</if>
+			<if test="search_Category == '1'.toString()">
+				and withboard_Title like '%'||#{search_Keyword}||'%'
+			</if>
+			<if test="search_Category == '2'.toString() ">
+				and withboard_Content like '%'||#{search_Keyword}||'%'
+			</if>
+			<if test="search_Category == '3'.toString() ">
+				and member_loginId like '%'||#{search_Keyword}||'%'
+			</if>
+		</if>
+
+
+	</select>
+
+	<select id="selectCode" resultType="String">
+		select stationId from stationcode where stationName=#{stationName}
+	</select> 
+
+
+
+</mapper>
+
+
