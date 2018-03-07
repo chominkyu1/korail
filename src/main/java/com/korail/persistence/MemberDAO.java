@@ -4,7 +4,7 @@ import com.korail.domain.MemberVO;
 import com.korail.dto.IdsearchDTO;
 import com.korail.dto.PwsearchDTO;
 
-public interface UserDAO {
+public interface MemberDAO {
 
 	 public MemberVO login(String member_Loginid,String member_Pw)throws Exception;
 	 public void insert(MemberVO memberVO)throws Exception;

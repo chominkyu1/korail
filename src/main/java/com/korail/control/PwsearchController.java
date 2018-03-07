@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.korail.dto.PwsearchDTO;
-import com.korail.service.UserService;
+import com.korail.service.MemberService;
 @Controller
 public class PwsearchController {
 	@Inject
-	private UserService userService;
+	private MemberService memberService;
 	
 	@RequestMapping(value="/basic/pwdsearch",method=RequestMethod.GET)
 	public void pwSearchGet(HttpServletRequest request, ModelMap mo,PwsearchDTO pwsearchDTO) throws AddressException, MessagingException{
@@ -55,7 +55,7 @@ public class PwsearchController {
 		String subject = "신규암호입니다.";
 		String body = "변경된암호는 "+tempPassword+" 입니다.";
 		
-		userService.pwSearch(pwsearchDTO);
+		memberService.pwSearch(pwsearchDTO);
 		Properties props = System.getProperties();
 
 		props.put("mail.smtp.host", host); 

@@ -12,7 +12,7 @@ import com.korail.dto.IdsearchDTO;
 import com.korail.dto.PwsearchDTO;
 
 @Repository
-public class UserDAOImpl implements UserDAO {
+public class MemberDAOImpl implements MemberDAO {
 
 	@Autowired
 	private SqlSession session;
@@ -24,35 +24,35 @@ public class UserDAOImpl implements UserDAO {
 		map.put("member_Loginid", member_Loginid);
 		map.put("member_Pw", member_Pw);
 		System.out.println("map>>" + map);
-		return session.selectOne("user.login", map);
+		return session.selectOne("member.login", map);
 	}
 
 	@Override
 	public void insert(MemberVO memberVO) throws Exception {
 		System.out.println("dao>>" + memberVO);
-		session.insert("user.insert", memberVO);
+		session.insert("member.insert", memberVO);
 
 	}
 
 	@Override
 	public String idSearch(IdsearchDTO idsearchDTO) throws Exception {
-		return session.selectOne("user.idsearch", idsearchDTO);
+		return session.selectOne("member.idsearch", idsearchDTO);
 	}
 
 	@Override
 	public void pwSearch(PwsearchDTO pwsearchDTO) throws Exception {
-		session.update("user.pwsearch", pwsearchDTO);
+		session.update("member.pwsearch", pwsearchDTO);
 
 	}
 
 	@Override
 	public void insert1() throws Exception {
-		session.insert("user.insert");
+		session.insert("member.insert");
 	}
 
 	@Override
 	public void memberSecession(String member_id) throws Exception {
-		session.delete("user.membersecession", member_id);
+		session.delete("member.membersecession", member_id);
 	}
 
 }

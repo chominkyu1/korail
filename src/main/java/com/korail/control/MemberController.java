@@ -16,13 +16,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.korail.domain.MemberVO;
 import com.korail.dto.IdsearchDTO;
-import com.korail.service.UserService;
+import com.korail.service.MemberService;
 
 @Controller
 @RequestMapping("/basic")
 public class MemberController {
 	@Inject
-	private UserService userService; 
+	private MemberService memberService; 
 	
 	@RequestMapping("/login")
 	public void login() {	
@@ -35,7 +35,7 @@ public class MemberController {
 	public String loginPOST(String member_Loginid,String member_Pw, 
 			HttpSession session, HttpServletRequest request) throws Exception {
 		
-		MemberVO memberVO = userService.login(member_Loginid,member_Pw);
+		MemberVO memberVO = memberService.login(member_Loginid,member_Pw);
 		System.out.println(memberVO);
 		if(memberVO != null) {
 			session.setAttribute("memberVO", memberVO);
@@ -80,7 +80,7 @@ public class MemberController {
 	@RequestMapping(value= "/idsearch" ,method=RequestMethod.POST)
 	public void idSearchPost(IdsearchDTO idsearchDTO,Model model) throws Exception {
 		System.out.println(idsearchDTO);
-		String member_Loginid = userService.idSearch(idsearchDTO);
+		String member_Loginid = memberService.idSearch(idsearchDTO);
 		System.out.println(member_Loginid);
 		model.addAttribute("member_Loginid",member_Loginid);
 	}

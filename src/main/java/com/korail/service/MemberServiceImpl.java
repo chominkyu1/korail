@@ -7,44 +7,44 @@ import org.springframework.stereotype.Service;
 import com.korail.domain.MemberVO;
 import com.korail.dto.IdsearchDTO;
 import com.korail.dto.PwsearchDTO;
-import com.korail.persistence.UserDAO;
+import com.korail.persistence.MemberDAO;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class MemberServiceImpl implements MemberService {
 	@Inject
-	private UserDAO userDAO;
+	private MemberDAO memberDAO;
 
 	@Override
 	public MemberVO login(String member_Loginid, String member_Pw) throws Exception {
-		return userDAO.login(member_Loginid, member_Pw);
+		return memberDAO.login(member_Loginid, member_Pw);
 	}
 
 	@Override
 	public void insert(MemberVO memberVO) throws Exception {
-		userDAO.insert(memberVO);
+		memberDAO.insert(memberVO);
 
 	}
 
 	@Override
 	public String idSearch(IdsearchDTO idsearchDTO) throws Exception {
-		return userDAO.idSearch(idsearchDTO);
+		return memberDAO.idSearch(idsearchDTO);
 	}
 
 	@Override
 	public void pwSearch(PwsearchDTO pwsearchDTO) throws Exception {
-		userDAO.pwSearch(pwsearchDTO);
+		memberDAO.pwSearch(pwsearchDTO);
 
 	}
 
 	@Override
 	public void insert1() throws Exception {
-		userDAO.insert1();
+		memberDAO.insert1();
 
 	}
 
 	@Override
 	public void memberSecession(String member_id) throws Exception {
-		userDAO.memberSecession(member_id);
+		memberDAO.memberSecession(member_id);
 	}
 
 }

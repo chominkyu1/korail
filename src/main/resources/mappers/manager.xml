@@ -29,7 +29,8 @@
 
 	<!-- <select id="tipreview" resultType="TipreviewVO"> select * from tipreview 
 		where member_Id = #{member_Id} </select> <select id="discountAll" resultType="DiscountVO"> 
-		select * from discount </select> --></mapper>
+		select * from discount </select> -->
+		</mapper>
 
 
 
