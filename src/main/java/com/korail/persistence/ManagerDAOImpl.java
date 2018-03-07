@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.korail.domain.DiscountVO;
 import com.korail.domain.MemberVO;
-import com.korail.domain.WithboardVO;
+import com.korail.domain.WithBoardVO;
+
 
 @Repository
 public class ManagerDAOImpl implements ManagerDAO {
@@ -43,7 +44,7 @@ public class ManagerDAOImpl implements ManagerDAO {
 	}
 
 	@Override
-	public List<WithboardVO> memberwithboard(String member_Id) throws Exception {
+	public List<WithBoardVO> memberwithboard(String member_Id) throws Exception {
 		return session.selectList("manager.memberwithboard", member_Id);
 	}
 
@@ -52,9 +53,6 @@ public class ManagerDAOImpl implements ManagerDAO {
 		return session.selectList("manager.discountAll");
 	}
 
-	
-	
-	
 	
 
 }

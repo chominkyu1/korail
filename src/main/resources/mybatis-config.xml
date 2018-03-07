@@ -4,6 +4,12 @@
 <!-- mybatis-config.xml -->
 <configuration>
 	<typeAliases>
-		<package name="com.korail.domain"/>
+
+		
+		<typeAlias type="com.korail.domain.WithBoardVO" alias="withboard" />
+		<typeAlias type="com.korail.domain.WithScheVO" alias="withsche" />
+		<typeAlias type="com.korail.domain.WithAskVO" alias="ask" />
+		<typeAlias type="com.korail.domain.MemberVO" alias="memberVO" />
+		
 	</typeAliases>
 </configuration>     

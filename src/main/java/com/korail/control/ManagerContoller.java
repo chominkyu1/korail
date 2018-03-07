@@ -23,13 +23,13 @@ public class ManagerContoller {
 		//System.out.println(searchDTO);
 		m.addAttribute("memberList", managerService.memberSearch(searchDTO));
 	}
-	@RequestMapping("/memberDetail")
+/*	@RequestMapping("/memberDetail")
 	public void memberDetail(String member_Id,Model m) throws Exception {
 		System.out.println(member_Id);
 		m.addAttribute("memberDetail",managerService.memberSearchDetail(member_Id));
 		m.addAttribute("memberwithboard",managerService.memberwithboard(member_Id));
 		
-	}
+	}*/
 	@RequestMapping("/saleBoardList")
 	public void saleBoardList(Model m) throws Exception {
 		m.addAttribute("discountAll",managerService.discountAll());

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- user.xml -->
+<mapper namespace="member">
+	<select id="writerInfo" resultType="memberVO">
+	select member_Id, member_Loginid, member_Name, member_Gender, member_Birth, member_Profile
+	from member
+	where member_Id=#{member_Id}
+	</select>
+	
+	<select id="login" resultType="memberVO">
+		select *
+		from member
+		where member_Loginid=#{member_Loginid} and member_Pw=#{member_Pw}
+	</select>
+
+	<!-- 회원가입 -->
+	<insert id="insert">
+		Insert into MEMBER (MEMBER_ID,MEMBER_LOGINID,MEMBER_PW,MEMBER_NAME,MEMBER_QUES,MEMBER_ANSWER,MEMBER_ADDR,MEMBER_GENDER,MEMBER_BIRTH,MEMBER_TYPE,MEMBER_PROFILE,MEMBER_REGIDATE,MEMBER_PHONE)
+		values ('M'||lpad(seq_M.nextval,3,0),#{member_Loginid},#{member_Pw},#{member_Name},#{member_Ques},#{member_Answer},#{member_Addr},#{member_Gender},#{member_Birth},'회원',#{member_Profile},sysdate,#{member_Phone})
+	</insert>
+	<!-- <insert id="insert"> Insert into MEMBER (MEMBER_ID,MEMBER_LOGINID,MEMBER_PW,MEMBER_NAME,MEMBER_QUES,MEMBER_ANSWER,MEMBER_ADDR,MEMBER_GENDER,MEMBER_BIRTH,MEMBER_TYPE,MEMBER_PROFILE,MEMBER_REGIDATE,MEMBER_PHONE) 
+		values ('M'||lpad(seq_M.nextval,3,0),'member','member','아이이잉','1','토스트','서울시 
+		강남구 도곡동 193- 21 213호','여성',sysdate,'회원','C:\Users\Playdata\Desktop\erd\토스트가좋아.jpg',sysdate,'01022222222') 
+		</insert> -->
+
+	<!-- id찾기 -->
+	<select id="idsearch" resultType="string">
+		select member_loginid
+		from
+		member
+		where member_name=#{member_Name} and
+		member_phone=#{member_Phone}
+	</select>
+	<!-- pw찾기 -->
+	<update id="pwsearch">
+		update member set member_pw = #{member_Pw}
+		where
+		member_name=#{member_Name} and member_phone=#{member_Phone}
+	</update>
+	<!-- 멤버탈퇴 -->
+	<delete id="membersecession">
+		delete from member
+		where member_id=#{member_id}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

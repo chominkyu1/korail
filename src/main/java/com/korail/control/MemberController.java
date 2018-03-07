@@ -20,7 +20,7 @@ import com.korail.service.UserService;
 
 @Controller
 @RequestMapping("/basic")
-public class UserController {
+public class MemberController {
 	@Inject
 	private UserService userService; 
 	
@@ -58,7 +58,7 @@ public class UserController {
 		System.out.println("야호");
 	}
 	
-	@RequestMapping(value="/join",method=RequestMethod.POST)
+	/*@RequestMapping(value="/join",method=RequestMethod.POST)
 	public String memberInsert(MemberVO memberVO,RedirectAttributes attr) throws Exception {
 		System.out.println("시작");
 		Date from = memberVO.getMember_Birth_jsp();
@@ -71,7 +71,7 @@ public class UserController {
 		userService.insert(memberVO);
 		System.out.println("post체크");
 		return "redirect:/basic/login";
-	}
+	}*/
 	
 	
 	@RequestMapping(value= "/idsearch" ,method=RequestMethod.GET)
