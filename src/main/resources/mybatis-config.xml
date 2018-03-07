@@ -10,6 +10,7 @@
 		<typeAlias type="com.korail.domain.WithScheVO" alias="withsche" />
 		<typeAlias type="com.korail.domain.WithAskVO" alias="ask" />
 		<typeAlias type="com.korail.domain.MemberVO" alias="memberVO" />
+		<typeAlias type="com.korail.domain.TipReviewVO" alias="tip" />
 		
 	</typeAliases>
 </configuration>     

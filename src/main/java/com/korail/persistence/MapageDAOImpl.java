@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.korail.domain.TipreviewVO;
+import com.korail.domain.TipReviewVO;
 @Repository
 public class MapageDAOImpl implements MyPageDAO {
 	@Inject
@@ -17,7 +17,7 @@ public class MapageDAOImpl implements MyPageDAO {
 		session.delete("mypage.scrapdelete", tipreview_Id);
 	}
 	@Override
-	public List<TipreviewVO> myScrap(String member_Id) throws Exception {
+	public List<TipReviewVO> myScrap(String member_Id) throws Exception {
 		System.out.println("dao>>"+member_Id);
 		return session.selectList("mypage.mypagescrap", member_Id);
 	}

@@ -1,26 +1,28 @@
 package com.korail.domain;
 
 
-public class TipreviewVO {
+public class TipReviewVO {
 
 	   private String tipreview_Id;
 	   private String tipreview_Title; 
 	   private String tipreview_Content; 
 	   private String tipreview_Count; 
 	   private String tipreview_Type;
+	   private String tipreview_Regidate;
 	   private String member_Id;
 
-	   public TipreviewVO() {
+	   public TipReviewVO() {
 	}
 
-	public TipreviewVO(String tipreview_Id, String tipreview_Title, String tipreview_Content, String tipreview_Count,
-			String tipreview_Type, String member_Id) {
+	public TipReviewVO(String tipreview_Id, String tipreview_Title, String tipreview_Content, String tipreview_Count,
+			String tipreview_Type, String tipreview_Regidate, String member_Id) {
 		super();
 		this.tipreview_Id = tipreview_Id;
 		this.tipreview_Title = tipreview_Title;
 		this.tipreview_Content = tipreview_Content;
 		this.tipreview_Count = tipreview_Count;
 		this.tipreview_Type = tipreview_Type;
+		this.tipreview_Regidate = tipreview_Regidate;
 		this.member_Id = member_Id;
 	}
 
@@ -64,6 +66,14 @@ public class TipreviewVO {
 		this.tipreview_Type = tipreview_Type;
 	}
 
+	public String getTipreview_Regidate() {
+		return tipreview_Regidate;
+	}
+
+	public void setTipreview_Regidate(String tipreview_Regidate) {
+		this.tipreview_Regidate = tipreview_Regidate;
+	}
+
 	public String getMember_Id() {
 		return member_Id;
 	}
@@ -74,8 +84,11 @@ public class TipreviewVO {
 
 	@Override
 	public String toString() {
-		return "TipreviewVO [tipreview_Id=" + tipreview_Id + ", tipreview_Title=" + tipreview_Title
+		return "TipReviewVO [tipreview_Id=" + tipreview_Id + ", tipreview_Title=" + tipreview_Title
 				+ ", tipreview_Content=" + tipreview_Content + ", tipreview_Count=" + tipreview_Count
-				+ ", tipreview_Type=" + tipreview_Type + ", member_Id=" + member_Id + "]";
+				+ ", tipreview_Type=" + tipreview_Type + ", tipreview_Regidate=" + tipreview_Regidate + ", member_Id="
+				+ member_Id + "]";
 	}
+
+
 }

@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import com.korail.domain.TipreviewVO;
+import com.korail.domain.TipReviewVO;
 import com.korail.persistence.MyPageDAO;
 @Service
 public class MypageServiceImpl implements MypageService {
@@ -20,7 +20,7 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public List<TipreviewVO> myScrap(String member_Id) throws Exception {
+	public List<TipReviewVO> myScrap(String member_Id) throws Exception {
 		return myPageDAO.myScrap(member_Id);
 	}
 

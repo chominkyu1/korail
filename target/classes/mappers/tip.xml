@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tip">
+
+	<insert id="insert">
+		insert into tipreview(tipreview_id, tipreview_type, tipreview_regidate, tipreview_title,
+		            tipreview_content, tipreview_count, member_id)
+		values ('TR'||lpad (seq_TR.nextval,3,0), #{tipreview_Type}, sysdate,
+		             #{tipreview_Title}, #{tipreview_Content}, 0, #{member_Id})
+	</insert>
+	
+	<select id="select" resultType="tip">
+		select tipreview_id, tipreview_type, tipreview_title, tipreview_id,
+		       tipreview_regidate, tipreview_count, tipreview_content, member_id
+		from tipreview 
+		where tipreview_id=#{tipreview_Id}
+		<!-- order by tipreview_id desc -->
+	</select>
+	
+	<update id="update">
+	    update tipreview
+	    set tipreview_type=#{tipreview_Type}, 
+	        tipreview_title=#{tipreview_Title}, 
+	        tipreview_regidate=to_date(#{tipreview_Regidate},'yy/mm/dd'), 
+	        tipreview_count=#{tipreview_Count},
+	        tipreview_content=#{tipreview_Content}, 
+	        member_id=#{member_Id}
+	    	where tipreview_Id=#{tipreview_Id}
+	</update>
+
+	<delete id="delete">
+	    delete from tipreview
+	   	where tipreview_Id=#{tipreview_Id}
+	</delete>
+	
+	<select id="selectAll" resultType="tip">
+		select * from tipreview
+	</select>
+	
+	<select id="listSearch" resultType="tip">
+		select * from tipreview
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+			where tipreview_title like '%'||#{keyword}||'%'	
+			</if>
+			<if test="searchType == 'w'.toString()">
+			where member_id like '%'||#{keyword}||'%'	
+			</if>
+			<if test="searchType == 'tw'.toSTring()">
+			where tipreview_title like '%'||#{keyword}||'%'
+		    or member_id like '%'||#{keyword}||'%'
+			</if>
+		</if>
+     </select>
+     
+	<select id="listSearchCount" resultType="int">
+		select count(*) from tipreview
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+			where tipreview_title like '%'||#{keyword}||'%'	
+			</if>
+			<if test="searchType == 'w'.toString()">
+			where member_id like '%'||#{keyword}||'%'	
+			</if>
+			<if test="searchType == 'tw'.toSTring()">
+			where tipreview_title like '%'||#{keyword}||'%'
+		    or member_id like '%'||#{keyword}||'%'
+			</if>
+		</if>
+		 	
+	</select>
+</mapper>
