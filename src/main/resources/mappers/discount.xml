@@ -5,7 +5,7 @@
 	<insert id="create">
 		insert into discount (discount_Id, station_Id, discount_Title, discount_Price,
 			member_Id, discount_Content, discount_Shopname, discount_Shophone,discount_Map, discount_Count)
-		    values ('D'||lpad (seq_D.nextval,3,0) ,#{station_Id},#{discount_Title},#{discount_Price},#{member_Id},
+		    values (#{discount_Id} ,#{station_Id},#{discount_Title},#{discount_Price},#{member_Id},
 		            #{discount_Content},#{discount_Shopname},#{discount_Shophone},#{discount_Map},0)
 		
 	</insert>

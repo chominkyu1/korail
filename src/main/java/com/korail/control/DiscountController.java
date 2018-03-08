@@ -1,7 +1,9 @@
 package com.korail.control;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.UUID;
@@ -84,46 +86,33 @@ public class DiscountController {//한정숙 : 할인게시물 컨트롤러
 		return "redirect:list";
 	}*/
 	
+	@SuppressWarnings("null")
 	@RequestMapping("uploadsale")//게시글업로드
-	public String updiscount(String []addFile,HttpServletRequest request,RedirectAttributes attr) throws Exception {
-		/*System.out.println(addfile);
-		System.out.println(discountVO);*/
-		 
-		String saveDir = request.getServletContext().getRealPath("img/imgdiscount");
+	public String updiscount(HttpServletRequest request,RedirectAttributes attr) throws Exception {
+			 
+		String saveDir = request.getServletContext().getRealPath("resources/img/imgdiscount");
 		System.out.println("저장경로 saveDir >>>"+saveDir);
 		int maxSize = 5*1025*1024;
 		
 		MultipartRequest multi = new MultipartRequest(request, saveDir, maxSize, "UTF-8", new DefaultFileRenamePolicy());
-		Enumeration fileName = multi.getFileNames();
-		System.out.println("Enumeration fileName >>>>"+fileName);
-		String path = "/resources/img/imgdiscount";
-		System.out.println("db에 저장될 파일 경로 >>>>>>"+path);
-		File file = multi.getFile("addfile");
-		String name = file.getName();
-		System.out.println("여기는 배열 "+file);
+		//---------------- 파일 업로드 END ------------------------
 		
+		String path = "resources/img/imgdiscount/";
 		
+		Enumeration fileNames = multi.getFileNames();//type=file에 대한 name--> addfile
+	 
+		List<AddFileVO> addFileList = new ArrayList<>();
 		
-		
-		List<AddFileVO> addFileList = null;
-		
-		/*for (int i = 0; i < addfile.length; i++) {
-			String addFile_StoredName= path + "/" + multi.getFilesystemName(addfile[i]);// 업로드한 파일의 전체 경로를 DB에 저장하기 위함
-			String addFile_Name = path + "/" + multi.getFileNames();
-			
+		while(fileNames.hasMoreElements()) {
+			String names = multi.getFilesystemName(fileNames.nextElement().toString());
+			System.out.println("addfile파일명^^*>>>"+names);
+			//fileNameList.add(names);
 			AddFileVO addFileVO = new AddFileVO();
-			addFileVO.setAddFile_Name(addFile_Name);
-			addFileVO.setAddFile_Path(addFile_Path);
-			addFileVO.setAddFile_Size(addFile_Size);
-			addFileVO.setAddFile_StoredName(addFile_StoredName);
+			addFileVO.setAddFile_Path(path + names);//db에 저장된 사진 경로
 			
-			addFileList.add(addFileVO);
-			
-		}*/
-		
-		String spacepost_image3 = path + "/" + multi.getFilesystemName("image3");
-		
-		
+			System.out.println("DB에 저장되는 사진 경로 >>>"+path + names);
+			addFileList.add(addFileVO);	
+		}
 		
 		DiscountVO discountVO = new DiscountVO();
 		discountVO.setDiscount_Title(multi.getParameter("discount_Title"));
@@ -131,18 +120,13 @@ public class DiscountController {//한정숙 : 할인게시물 컨트롤러
 		discountVO.setMember_Id(multi.getParameter("member_Id"));
 		discountVO.setDiscount_Price(multi.getParameter("discount_Price"));
 		discountVO.setDiscount_Map(multi.getParameter("discount_Map"));
+		
 		discountVO.setDiscount_Shophone(multi.getParameter("discount_Shophone"));
 		discountVO.setDiscount_Shopname(multi.getParameter("discount_Shopname"));
 		discountVO.setDiscount_Content(multi.getParameter("discount_Content"));
 		
-		AddFileVO addFileVO = new AddFileVO();
-		
-		
-		
-		discountService.create(discountVO, addFileVO);
-		
-		
-		//System.out.println(multi.getParameter("station_Id"));
+		System.out.println(discountVO);
+		discountService.create(discountVO, addFileList);
 		
 		attr.addFlashAttribute("msg", "success");
 		return "redirect:list";

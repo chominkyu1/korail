@@ -19,16 +19,22 @@ public class DiscountServiceImpl implements DiscountService {
 	@Inject
 	private DiscountDAO discountDAO;
 	
+	@Inject
 	private AddFileDAO addfileDAO;
 
 	@Transactional
 	@Override
-	public void create(DiscountVO discountVO, AddFileVO addFileVO) throws Exception {
+	public void create(DiscountVO discountVO, List<AddFileVO> list) throws Exception {
 		String discount_Id = discountDAO.discountSeq();
 		
 		discountVO.setDiscount_Id(discount_Id);
 		discountDAO.create(discountVO);
 		
+		for (int i = 0; i < list.size(); i++) {
+			AddFileVO addFileVO = list.get(i);
+			addFileVO.setDiscount_Id(discount_Id);
+			addfileDAO.create(addFileVO);
+		}		
 		//addFileVO.setDiscount_Id(discount_Id);
 		//addfileDAO.create(addFileVO);
 	}

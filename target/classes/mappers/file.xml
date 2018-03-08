@@ -3,18 +3,15 @@
 <!-- user.xml -->
 <mapper namespace="file" >
 	<insert id="create">
-	insert into addfile 
-	values ('F'||lpad (seq_F.nextval,3,0) ,#{addFile_Path},#{addFile_Name},#{addFile_Size},
-	<choose>
-	<when test="tipreview_Id !=null">#{tipreview_Id}</when>
-	<when test="discount_Id !=null">#{discount_Id}</when>
-	</choose>);
+	insert into addfile (addfile_Id,addFile_Path,discount_Id)
+	values ('F'||lpad (seq_F.nextval,3,0) ,#{addFile_Path},#{discount_Id})
+	
 	</insert>
 	
 	<update id="update">
 	
 	</update>
-	
+	<!-- 
 	<delete id="delete">
 	delete from addfile where 
 	<choose>
@@ -25,7 +22,7 @@
 	
    	<select id="select" resultType="AddFileVO">
    	
-   	</select>
+   	</select> -->
    	
 </mapper>
 

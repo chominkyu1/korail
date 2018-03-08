@@ -8,7 +8,7 @@ import com.korail.domain.StationVO;
 
 public interface DiscountService {
 	
-	public void create(DiscountVO discountVO, AddFileVO addFileVO) throws Exception;
+	public void create(DiscountVO discountVO, List<AddFileVO> list) throws Exception;
 	public void update(DiscountVO discountVO) throws Exception;
 	public void delete(String discount_Id) throws Exception;
 	public List<DiscountVO> listAll() throws Exception;

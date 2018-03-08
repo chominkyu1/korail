@@ -7,9 +7,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	var cnt=0;
+	
 	$("select[name=station_Type]").change(function() {
 		//alert($("select[name=station_Type] option:selected").val());
-		alert($(this).val());
+		console.log($(this).val());
 		$.ajax({
 			url:"stationList",
 			data:{station_Type:$(this).val()},
@@ -18,29 +20,37 @@ $(document).ready(function(){
 			}
 		});
 	});
-	
-	$(document).on("change","select[name=station_Station]",function(){
-		alert($("select[name=station_Station] option:selected").val());
+
+	$('#station').on("change","select[name=station_Station]",function(){
+		console.log($("select[name=station_Station] option:selected").val());
 		$.ajax({
 			url:"stationId",
 			data:{station_Station:$("select[name=station_Station] option:selected").val()},
 			success:function(data){
-				alert(data);
+				console.log(data);
 				$("#station_Id").val(data);
 			}
 		});
 		
 	});
 	
-	$('[name=myfile]').change(function(){//파일 미리보기
-		console.log('change');
-		$("#img").css("display","");
+	$('#fileDiv').on('change','.myfile',function(){//파일 미리보기
+		console.log('파일선택 :'+ this);
+	    var img = $(this).parent().find('img');
+		//$("#img").css("display","");
+		img.css("display","");
 		var reader = new FileReader();
 		
 		reader.onload=function(e){
-			$('#img').attr('src', e.target.result );
+			img.attr('src', e.target.result );
 		}
 		reader.readAsDataURL(this.files[0])
+	});
+	
+	//파일 input 추가
+	$('button').click(function(){
+		$('#fileDiv').append('<div><input type="file" class="myfile" name="addfile'+ ++cnt +'">'+
+				'<br><img id="img" width="300" height="300" style="display:none" ><hr><div>');
 	});
 });
 </script>
@@ -84,8 +94,9 @@ $(document).ready(function(){
 	내용 : 
 	<input type="text"  name="discount_Content"><br>
 	
-	파일 : <input type="file" name="addfile" multiple>
-	<img id="img" width="300" height="300" style="display: none">
+	파일 : <button type="button">파일추가</button>
+	<div id="fileDiv"></div>
+	
 	<input type="submit" value="등록" > <input type="button" value="취소" >
 	</form>
 </body>
