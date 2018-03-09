@@ -55,7 +55,7 @@ public class PwsearchController {
 		String subject = "신규암호입니다.";
 		String body = "변경된암호는 "+tempPassword+" 입니다.";
 		
-		memberService.pwSearch(pwsearchDTO);
+		//memberService.pwSearch(pwsearchDTO);
 		Properties props = System.getProperties();
 
 		props.put("mail.smtp.host", host); 

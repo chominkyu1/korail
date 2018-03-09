@@ -41,9 +41,9 @@ public class MailController {
 		
 		if (category.equals("sendTempCode")) {//회원가입 인증코드 	발송일때 
 			
-			recipient = authorizeVO.getAuthorie_Mail();
+			recipient = authorizeVO.getAuthorize_Mail();
 			subject = "회원가입 인증코드입니다.";
-			body = "회원가입 인증코드는 "+authorizeVO.getAuthorie_Code()+" 입니다. 회원가입 인증창에 정확히 입력해주세요 ~!";
+			body = "회원가입 인증코드는 "+authorizeVO.getAuthorize_Code()+" 입니다. 회원가입 인증창에 정확히 입력해주세요 ~!";
 			
 		}else if (category.equals("sendTempPass")) {//임시비밀번호 발송일때 
 			

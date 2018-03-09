@@ -24,6 +24,7 @@ public class PurchaseController {//주문, 티켓 구매 컨트롤러 : 한정숙
 	
 	@RequestMapping("ticketInfo")
 	public String ticketInfo() {//티켓정보 페이지 단순 jsp이동
+		System.out.println("ffffffffffffffffffffffff");
 		return "purchase/ticketInfo";
 	}
 	

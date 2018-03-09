@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.korail.domain.AuthorizeVO;
 import com.korail.domain.MemberVO;
-import com.korail.dto.IdsearchDTO;
 import com.korail.dto.PwsearchDTO;
 
 @Repository
@@ -29,37 +28,30 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public void insert(MemberVO memberVO) throws Exception {
-		System.out.println("dao>>" + memberVO);
-		session.insert("member.insert", memberVO);
+	public void insert(MemberVO MemberVO) throws Exception {
+		System.out.println("dao>>" + MemberVO);
+		session.insert("member.insert", MemberVO);
 
-	}
-
-	@Override
-	public String idSearch(IdsearchDTO idsearchDTO) throws Exception {
-		return session.selectOne("member.idsearch", idsearchDTO);
-	}
-
-	@Override
-	public void pwSearch(PwsearchDTO pwsearchDTO) throws Exception {
-		session.update("member.pwsearch", pwsearchDTO);
-
-	}
-
-	@Override
-	public void insert1() throws Exception {
-		session.insert("member.insert");
-	}
-
-	@Override
-	public void memberSecession(String member_id) throws Exception {
-		session.delete("member.membersecession", member_id);
 	}
 
 	@Override
 	public void createAuthorize(AuthorizeVO authorizeVO) throws Exception {
 		session.insert("member.createAuth",authorizeVO);
 		
+	}
+
+	@Override
+	public String selectAuthId(String member_Email, String tempCode) throws Exception {
+		Map<String, String> map = new HashMap<>();
+		map.put("authorie_Mail", member_Email);
+		map.put("authorie_Code", tempCode);
+		
+		return session.selectOne("member.selectAuthId", map);
+	}
+
+	@Override
+	public int validID(String keyword) throws Exception {
+		return session.selectOne("member.validID", keyword);
 	}
 
 }

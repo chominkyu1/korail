@@ -2,42 +2,40 @@ package com.korail.domain;
 
 
 public class AuthorizeVO {
-	private String authorie_Id;
-	private String authorie_Mail;
-	private String authorie_Code;
-	private String authorie_Date;
-	
-	
-	public String getAuthorie_Id() {
-		return authorie_Id;
+	private String authorize_Id;
+	private String authorize_Mail;
+	private String authorize_Code;
+	private String authorize_Date;
+	public String getAuthorize_Id() {
+		return authorize_Id;
 	}
-	public void setAuthorie_Id(String authorie_Id) {
-		this.authorie_Id = authorie_Id;
+	public void setAuthorize_Id(String authorize_Id) {
+		this.authorize_Id = authorize_Id;
 	}
-	public String getAuthorie_Mail() {
-		return authorie_Mail;
+	public String getAuthorize_Mail() {
+		return authorize_Mail;
 	}
-	public void setAuthorie_Mail(String authorie_Mail) {
-		this.authorie_Mail = authorie_Mail;
+	public void setAuthorize_Mail(String authorize_Mail) {
+		this.authorize_Mail = authorize_Mail;
 	}
-	public String getAuthorie_Code() {
-		return authorie_Code;
+	public String getAuthorize_Code() {
+		return authorize_Code;
 	}
-	public void setAuthorie_Code(String authorie_Code) {
-		this.authorie_Code = authorie_Code;
+	public void setAuthorize_Code(String authorize_Code) {
+		this.authorize_Code = authorize_Code;
 	}
-	public String getAuthorie_Date() {
-		return authorie_Date;
+	public String getAuthorize_Date() {
+		return authorize_Date;
 	}
-	public void setAuthorie_Date(String authorie_Date) {
-		this.authorie_Date = authorie_Date;
+	public void setAuthorize_Date(String authorize_Date) {
+		this.authorize_Date = authorize_Date;
 	}
-	
 	@Override
 	public String toString() {
-		return "AuthorizeVO [authorie_Id=" + authorie_Id + ", authorie_Mail=" + authorie_Mail + ", authorie_Code="
-				+ authorie_Code + ", authorie_Date=" + authorie_Date + "]";
+		return "AuthorizeVO [authorize_Id=" + authorize_Id + ", authorize_Mail=" + authorize_Mail + ", authorize_Code="
+				+ authorize_Code + ", authorize_Date=" + authorize_Date + "]";
 	}
+	
 	
 	
 }

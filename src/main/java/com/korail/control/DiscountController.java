@@ -56,36 +56,6 @@ public class DiscountController {//한정숙 : 할인게시물 컨트롤러
 		return station_Id;
 	}
 	
-	/*@RequestMapping("uploadsale")//게시글업로드
-	public String updiscount(@ModelAttribute("article") DiscountVO discountVO,
-            MultipartHttpServletRequest mhsq, RedirectAttributes attr) throws Exception {
-		 
-		List<MultipartFile> mf = mhsq.getFiles("addfile");
-		 
-	        if (mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
-	        } else {
-	            for (int i = 0; i < mf.size(); i++) {
-	                // 파일 중복명 처리
-	                String genId = UUID.randomUUID().toString();
-	                // 본래 파일명
-	                String originalfileName = mf.get(i).getOriginalFilename();
-	                 
-	                String saveFileName = genId + "." + getExtension(originalfileName);
-	                // 저장되는 파일 이름
-	 
-	                String savePath = realFolder + saveFileName; // 저장 될 파일 경로
-	 
-	                long fileSize = mf.get(i).getSize(); // 파일 사이즈
-	 
-	                mf.get(i).transferTo(new File(savePath)); // 파일 저장
-	 
-	                bbsService.fileUpload(originalfileName, saveFileName, fileSize);
-	            }
-	        }
-	    attr.addFlashAttribute("msg", "success");
-		return "redirect:list";
-	}*/
-	
 	@SuppressWarnings("null")
 	@RequestMapping("uploadsale")//게시글업로드
 	public String updiscount(HttpServletRequest request,RedirectAttributes attr) throws Exception {

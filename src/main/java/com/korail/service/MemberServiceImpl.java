@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.korail.domain.AuthorizeVO;
 import com.korail.domain.MemberVO;
-import com.korail.dto.IdsearchDTO;
 import com.korail.dto.PwsearchDTO;
 import com.korail.persistence.MemberDAO;
 
@@ -21,37 +20,29 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void insert(MemberVO memberVO) throws Exception {
-		memberDAO.insert(memberVO);
+	public void insert(MemberVO MemberVO) throws Exception {
+		memberDAO.insert(MemberVO);
 
 	}
 
-	@Override
-	public String idSearch(IdsearchDTO idsearchDTO) throws Exception {
-		return memberDAO.idSearch(idsearchDTO);
-	}
-
-	@Override
-	public void pwSearch(PwsearchDTO pwsearchDTO) throws Exception {
-		memberDAO.pwSearch(pwsearchDTO);
-
-	}
-
-	@Override
-	public void insert1() throws Exception {
-		memberDAO.insert1();
-
-	}
-
-	@Override
-	public void memberSecession(String member_id) throws Exception {
-		memberDAO.memberSecession(member_id);
-	}
 
 	@Override
 	public void createAuthorize(AuthorizeVO authorizeVO) throws Exception {
 		memberDAO.createAuthorize(authorizeVO);
 		
 	}
+
+	@Override
+	public String selectAuthId(String member_Email, String tempCode) throws Exception {
+		return memberDAO.selectAuthId(member_Email,tempCode);
+	}
+
+	@Override
+	public int validID(String keyword) throws Exception {
+		
+		return memberDAO.validID(keyword);
+	}
+
+	
 
 }
