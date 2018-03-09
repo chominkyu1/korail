@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.korail.domain.AuthorizeVO;
 import com.korail.domain.MemberVO;
 import com.korail.dto.IdsearchDTO;
 import com.korail.dto.PwsearchDTO;
@@ -53,6 +54,12 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public void memberSecession(String member_id) throws Exception {
 		session.delete("member.membersecession", member_id);
+	}
+
+	@Override
+	public void createAuthorize(AuthorizeVO authorizeVO) throws Exception {
+		session.insert("member.createAuth",authorizeVO);
+		
 	}
 
 }

@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.korail.domain.AuthorizeVO;
 import com.korail.domain.MemberVO;
 import com.korail.dto.IdsearchDTO;
 import com.korail.dto.PwsearchDTO;
@@ -45,6 +46,12 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void memberSecession(String member_id) throws Exception {
 		memberDAO.memberSecession(member_id);
+	}
+
+	@Override
+	public void createAuthorize(AuthorizeVO authorizeVO) throws Exception {
+		memberDAO.createAuthorize(authorizeVO);
+		
 	}
 
 }

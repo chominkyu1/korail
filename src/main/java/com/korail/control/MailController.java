@@ -2,7 +2,7 @@ package com.korail.control;
 
 import java.util.Properties;
 
-
+import javax.inject.Inject;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -13,14 +13,21 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.korail.domain.AuthorizeVO;
+import com.korail.service.MemberService;
+
+
 @Controller
 public class MailController {
 	
-	@RequestMapping(value="/mailsender")
-	public void mailSender(HttpServletRequest request, ModelMap mo) throws AddressException, MessagingException{
+	@Inject
+	private MemberService memberService; 
+	
+	public void mailSender(AuthorizeVO authorizeVO, String category, ModelMap mo) throws AddressException, MessagingException{
 		
 		String host = "smtp.naver.com";
 		
@@ -28,23 +35,38 @@ public class MailController {
 		final String password = "Hayate7754";
 		int port=465;
 		
-		String tempPassword = "";
-		for (int i = 0; i < 8; i++) {
-			int rndVal = (int) (Math.random() * 62);
-			if (rndVal < 10) {
-				tempPassword += rndVal;
-			} else if (rndVal > 35) {
-				tempPassword += (char) (rndVal + 61);
-			} else {
-				tempPassword += (char) (rndVal + 55);
-			}
-		}
-		//System.out.println("tempPassword : " + tempPassword);
+		String recipient = null;
+		String subject =null;
+		String body =null;
 		
-		String recipient = "hayate7754@gmail.com";
-		String subject = "신규암호입니다.";
-		String body = "변경된암호는 "+tempPassword+" 입니다.";
-
+		if (category.equals("sendTempCode")) {//회원가입 인증코드 	발송일때 
+			
+			recipient = authorizeVO.getAuthorie_Mail();
+			subject = "회원가입 인증코드입니다.";
+			body = "회원가입 인증코드는 "+authorizeVO.getAuthorie_Code()+" 입니다. 회원가입 인증창에 정확히 입력해주세요 ~!";
+			
+		}else if (category.equals("sendTempPass")) {//임시비밀번호 발송일때 
+			
+			String tempPassword = "";
+			for (int i = 0; i < 8; i++) {
+				int rndVal = (int) (Math.random() * 62);
+				if (rndVal < 10) {
+					tempPassword += rndVal;
+				} else if (rndVal > 35) {
+					tempPassword += (char) (rndVal + 61);
+				} else {
+					tempPassword += (char) (rndVal + 55);
+				}
+			}
+			
+			recipient = "hayate7754@gmail.com";
+			subject = "신규암호입니다.";
+			body = "변경된암호는 "+tempPassword+" 입니다.";
+			
+			
+		}
+		
+		
 		Properties props = System.getProperties();
 
 		props.put("mail.smtp.host", host); 
@@ -71,8 +93,6 @@ public class MailController {
 		mimeMessage.setSubject(subject); 
 		mimeMessage.setText(body);
 		Transport.send(mimeMessage); 
-		
-		System.out.println("넘어갔당");
 
 	}
 

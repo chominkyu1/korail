@@ -17,6 +17,7 @@
 		<typeAlias type="com.korail.domain.TOrderVO" alias="TOrderVO"/>
 		<typeAlias type="com.korail.domain.RefundVO" alias="RefundVO"/>
 		<typeAlias type="com.korail.domain.AddFileVO" alias="AddFileVO"/>
+		<typeAlias type="com.korail.domain.AuthorizeVO" alias="AuthorizeVO"/>
 		<typeAlias type="com.korail.dto.MyPurchaseDTO" alias="MyPurchaseDTO"/>
 		<typeAlias type="com.korail.dto.PurchaseDTO" alias="PurchaseDTO"/>
 	</typeAliases>
