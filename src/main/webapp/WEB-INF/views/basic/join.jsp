@@ -28,7 +28,7 @@ $(document).ready(function() {
 			var email = $("#member_Email").val();
 			concole.log(email);
 			
-			$.post("",{email:email});
+			$.post("sendEmail",{email:email});
 		});
 
 		$("#bt_validCode").click(function() {//ajax로 입력코드와 임시코드 비교 - 일치하면 일치합니다 alert/ 일치하지 않으면 다시 확인해 주세요 alert
